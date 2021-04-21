@@ -1,13 +1,13 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title> Tab 1 </ion-title>
+    <ion-title> News </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
+      <ion-title size="large">News</ion-title>
     </ion-toolbar>
   </ion-header>
 
@@ -29,6 +29,22 @@
     </ion-item>
 
     <ion-item *ngFor="let article of news.articles">
+      <ion-card>
+          <ion-img
+            *ngIf="article.urlToImage"
+            [src]="article.urlToImage"
+          ></ion-img>
+        <ion-card-header>
+          <ion-card-title>{{ article.title }}</ion-card-title>
+        </ion-card-header>
+
+        <ion-card-content>
+          {{ article.description }}
+          <ion-icon name="bookmark-outline" (click)="saveArticle(article.url, article.urlToImage)"></ion-icon>
+        </ion-card-content>
+      </ion-card>
+
+      <!--
       <h6>{{ article.title }}</h6>
       <ion-thumbnail>
         <ion-img
@@ -38,7 +54,7 @@
       </ion-thumbnail>
       <div>
         <p>{{ article.description }}</p>
-      </div>
+      </div>-->
     </ion-item>
   </div>
 </ion-content>

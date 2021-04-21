@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NewsService } from '../services/news.service';
 
 @Component({
   selector: 'app-tab2',
@@ -6,7 +7,12 @@ import { Component } from '@angular/core';
   styleUrls: ['tab2.page.scss']
 })
 export class Tab2Page {
+  stories$;
+  search: string;
+  constructor(private newsService: NewsService) {
+  }
 
-  constructor() {}
-
+  searchNews(search) {
+    this.stories$ = this.newsService.getStoriesBySearchObservable(search);
+  }
 }

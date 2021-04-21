@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SavedNewsService } from '../services/saved-news.service';
 
 @Component({
   selector: 'app-tab3',
@@ -7,6 +8,11 @@ import { Component } from '@angular/core';
 })
 export class Tab3Page {
 
-  constructor() {}
+  constructor(private savedNewsService: SavedNewsService) {}
 
+  savedNews = {};
+
+  ngOnInit() {
+    this.savedNews = this.savedNewsService.getSavedNews();
+  }
 }

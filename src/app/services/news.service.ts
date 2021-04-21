@@ -28,7 +28,7 @@ export class NewsService {
     );
   }
 
-  getStoriesBySearchObservable(): Observable<any> {
-    return this.http.get(`https://newsapi.org/v2/everything?apiKey=${apiKey}`);
+  getStoriesBySearchObservable(search): Observable<any> {
+    return this.http.get(`https://newsapi.org/v2/everything?q=${search}&apiKey=${apiKey}`);
   }
 }
