@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "news-app-eff9f": {
+      "hosting": {
+        "app": [
+          "news-app-eff9f"
+        ]
+      }
+    }
+  }
+}
