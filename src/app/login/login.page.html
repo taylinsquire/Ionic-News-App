@@ -5,5 +5,5 @@
 </ion-header>
 
 <ion-content>
-  <ngx-auth-firebaseui (onSuccess)="login()"></ngx-auth-firebaseui>
+  <ngx-auth-firebaseui-providers [theme]="themes.RAISED" (onSuccess)="login($event)"></ngx-auth-firebaseui-providers>
 </ion-content>
