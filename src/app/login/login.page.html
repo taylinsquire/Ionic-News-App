@@ -5,5 +5,5 @@
 </ion-header>
 
 <ion-content>
-  <ngx-auth-firebaseui-providers [theme]="themes.RAISED" (onSuccess)="login($event)"></ngx-auth-firebaseui-providers>
+  <ngx-auth-firebaseui-providers [theme]="themes.RAISED" (onSuccess)="router.navigate(['/tabs/tab2'])"></ngx-auth-firebaseui-providers>
 </ion-content>

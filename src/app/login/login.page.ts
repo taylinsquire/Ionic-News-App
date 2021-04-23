@@ -17,12 +17,5 @@ export class LoginPage implements OnInit {
   ngOnInit() {
   }
 
-  // login(event) {
-  //   var displayName = event.user.displayName;
-  //   var email = event.user.email;
-  //   var photoURL = event.user.photoURL;
-  //   var uid = event.user.uid;
-  //   this.authService.login(displayName, email, photoURL, uid);
-  //   this.router.navigate(['tabs/tab1']);
-  // }
+  
 }
