@@ -55,6 +55,26 @@ export class SavedNewsService {
       .catch(this.errorHandler);
   }
 
+  removeSave(url) {
+    if (!this.savedNews) {
+      this.savedNews = [];
+    }
+    for (let i = 0; i < this.savedNews.length; i++) {
+      if (url == this.savedNews[i].url) {
+        this.savedNews.splice(i, 1);
+        this.usersRef
+        .doc(this.userId)
+        .update({
+          savedNews: this.savedNews,
+        })
+        .then(() => {
+          console.log('Success on save');
+        })
+        .catch(this.errorHandler);
+      }
+    }
+  }
+
   getSavedNews() {
     return this.user$;
   }
