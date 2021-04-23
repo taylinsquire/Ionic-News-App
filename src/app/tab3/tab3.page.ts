@@ -20,4 +20,18 @@ export class Tab3Page {
   }
 
   ngOnInit() {}
+
+  saveArticle(url, urlToImage) {
+    this.savedNewsService.addSavedNews(
+      {
+        url: url,
+        urlToImage: urlToImage
+      }
+    )
+    this.user$.subscribe((user$) => {
+      user$.subscribe((user) => {
+        this.savedNews = user.savedNews;
+      });
+    });
+  }
 }

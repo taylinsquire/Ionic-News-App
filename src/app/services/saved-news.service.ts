@@ -38,6 +38,7 @@ export class SavedNewsService {
       if (save.url == this.savedNews[i].url) {
         match = true;
         this.savedNews.splice(i, 1);
+        console.log('match');
       }
     }
     if (!match) {
