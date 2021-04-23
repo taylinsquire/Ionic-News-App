@@ -11,9 +11,11 @@ export class Tab2Page {
   stories$;
   search: string;
   constructor(private newsService: NewsService, private savedNewsService: SavedNewsService) {
+    this.stories$ = this.newsService.getStoriesBySearchObservable();
   }
 
   searchNews(search) {
+    console.log(search);
     this.stories$ = this.newsService.getStoriesBySearchObservable(search);
   }
 

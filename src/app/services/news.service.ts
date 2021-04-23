@@ -15,20 +15,20 @@ export class NewsService {
     page: number = 1,
     category: string = ''
   ): Observable<any> {
-    console.log(category);
     if (!category) {
-      console.log('non-category search');
       return this.http.get(
         `https://newsapi.org/v2/top-headlines?country=us&pageSize=100&page=${page}&apiKey=${apiKey}`
-      );
+      ).pipe(shareReplay());
     }
-    console.log('category search');
     return this.http.get(
       `https://newsapi.org/v2/top-headlines?country=us&pageSize=100&category=${category}&page=${page}&apiKey=${apiKey}`
-    );
+    ).pipe(shareReplay());
   }
 
-  getStoriesBySearchObservable(search): Observable<any> {
-    return this.http.get(`https://newsapi.org/v2/everything?q=${search}&apiKey=${apiKey}`);
+  getStoriesBySearchObservable(search: string = 'news'): Observable<any> {
+    if (search === '') {
+    return this.http.get(`https://newsapi.org/v2/everything?q=news&apiKey=${apiKey}`).pipe(shareReplay());
+    }
+    return this.http.get(`https://newsapi.org/v2/everything?q=${search}&apiKey=${apiKey}`).pipe(shareReplay());
   }
 }

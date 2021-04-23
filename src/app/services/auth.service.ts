@@ -1,22 +1,35 @@
 import { Injectable } from '@angular/core';
-import { User } from './user';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { catchError, tap, map } from 'rxjs/operators';
+import { throwError, Observable, concat } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
+  user$;
 
-  user: User
+  constructor(
+    private firebaseAuth: AngularFireAuth,
+    private db: AngularFirestore
+  ) {
+    this.user$ = this.firebaseAuth.authState.pipe(
+      map((authState) => {
+        return this.db
+          .doc(`users/${authState.uid}`)
+          .valueChanges()
+          .pipe(catchError(this.errorHandler));
+      })
+    );
+  }
 
-  constructor() { }
+  getUserObservable(): Observable<any> {
+    return this.user$;
+  }
 
-  login(displayName, email, photoURL, uid) {
-    this.user = {
-      displayName: displayName,
-      email: email,
-      photoURL: photoURL,
-      uid: uid
-    }
-    console.log(this.user);
+  private errorHandler(error) {
+    console.log(error);
+    return throwError(error);
   }
 }
