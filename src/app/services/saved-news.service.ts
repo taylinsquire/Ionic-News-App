@@ -37,21 +37,21 @@ export class SavedNewsService {
     for (let i = 0; i < this.savedNews.length; i++) {
       if (save.url == this.savedNews[i].url) {
         match = true;
+        this.savedNews.splice(i, 1);
       }
     }
     if (!match) {
       this.savedNews.push(save);
-
-      this.usersRef
-        .doc(this.userId)
-        .update({
-          savedNews: this.savedNews,
-        })
-        .then(() => {
-          console.log('Success on save');
-        })
-        .catch(this.errorHandler);
     }
+    this.usersRef
+      .doc(this.userId)
+      .update({
+        savedNews: this.savedNews,
+      })
+      .then(() => {
+        console.log('Success on save');
+      })
+      .catch(this.errorHandler);
   }
 
   getSavedNews() {
