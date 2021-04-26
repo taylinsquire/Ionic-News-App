@@ -1,12 +1,5 @@
 import { Injectable } from '@angular/core';
-import {
-  AngularFirestoreDocument,
-  AngularFirestore,
-  AngularFirestoreCollection,
-  DocumentChangeAction,
-  CollectionReference,
-} from '@angular/fire/firestore';
-import { catchError, tap } from 'rxjs/operators';
+import { AngularFirestore } from '@angular/fire/firestore';
 import { throwError } from 'rxjs';
 import { AuthService } from './auth.service';
 
@@ -63,14 +56,14 @@ export class SavedNewsService {
       if (url == this.savedNews[i].url) {
         this.savedNews.splice(i, 1);
         this.usersRef
-        .doc(this.userId)
-        .update({
-          savedNews: this.savedNews,
-        })
-        .then(() => {
-          console.log('Success on save');
-        })
-        .catch(this.errorHandler);
+          .doc(this.userId)
+          .update({
+            savedNews: this.savedNews,
+          })
+          .then(() => {
+            console.log('Success on save');
+          })
+          .catch(this.errorHandler);
       }
     }
   }
