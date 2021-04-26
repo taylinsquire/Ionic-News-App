@@ -27,25 +27,27 @@
   </ion-select>
   <div *ngIf="stories$ | async as news">
     <ion-item *ngFor="let article of news.articles">
-      <a href="{{article.url}}" target="blank" class="article-anchor">
-        <ion-card>
+      <ion-card>
+        <a href="{{article.url}}" target="blank" class="article-anchor">
           <ion-img
             *ngIf="article.urlToImage"
             [src]="article.urlToImage"
           ></ion-img>
-          <ion-card-header>
+        </a>
+        <ion-card-header>
+          <a href="{{article.url}}" target="blank" class="article-anchor">
             <ion-card-title>{{ article.title }}</ion-card-title>
-          </ion-card-header>
+          </a>
+        </ion-card-header>
 
-          <ion-card-content>
-            {{ article.description }}
-            <ion-icon
-              name="bookmark-outline"
-              (click)="saveArticle(article)"
-            ></ion-icon>
-          </ion-card-content>
-        </ion-card>
-      </a>
+        <ion-card-content>
+          {{ article.description }}
+          <ion-icon
+            name="bookmark-outline"
+            (click)="saveArticle(article)"
+          ></ion-icon>
+        </ion-card-content>
+      </ion-card>
     </ion-item>
   </div>
 </ion-content>
