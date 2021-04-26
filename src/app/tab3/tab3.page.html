@@ -13,16 +13,21 @@
 
   <div *ngIf="user$ as user">
     <ion-item *ngFor="let article of savedNews">
-      <ion-card>
-        <ion-img
-          *ngIf="article.urlToImage"
-          [src]="article.urlToImage"
-        ></ion-img>
-        <ion-card-header>
-          <ion-card-title>{{ article.title }}</ion-card-title>
-          <ion-icon name="bookmark-outline" (click)="unsaveArticle(article)"></ion-icon>
-        </ion-card-header>
-      </ion-card>
+      <a href="{{article.url}}" target="blank" class="article-anchor">
+        <ion-card>
+          <ion-img
+            *ngIf="article.urlToImage"
+            [src]="article.urlToImage"
+          ></ion-img>
+          <ion-card-header>
+            <ion-card-title>{{ article.title }}</ion-card-title>
+            <ion-icon
+              name="bookmark-outline"
+              (click)="unsaveArticle(article)"
+            ></ion-icon>
+          </ion-card-header>
+        </ion-card>
+      </a>
     </ion-item>
   </div>
 </ion-content>

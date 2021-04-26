@@ -1,8 +1,6 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Search
-    </ion-title>
+    <ion-title> Search </ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -14,7 +12,10 @@
   </ion-header>
 
   <ion-searchbar (ionChange)="searchNews($event.target.value)"></ion-searchbar>
-  <ion-select placeholder="Categories" (ionChange)="onCategoryChange($event.target.value)">
+  <ion-select
+    placeholder="Categories"
+    (ionChange)="onCategoryChange($event.target.value)"
+  >
     <ion-select-option value="">All</ion-select-option>
     <ion-select-option value="business">Business</ion-select-option>
     <ion-select-option value="entertainment">Entertainment</ion-select-option>
@@ -25,22 +26,26 @@
     <ion-select-option value="technology">Technology</ion-select-option>
   </ion-select>
   <div *ngIf="stories$ | async as news">
-
     <ion-item *ngFor="let article of news.articles">
-      <ion-card>
-        <ion-img
-          *ngIf="article.urlToImage"
-          [src]="article.urlToImage"
-        ></ion-img>
-        <ion-card-header>
-          <ion-card-title>{{ article.title }}</ion-card-title>
-        </ion-card-header>
+      <a href="{{article.url}}" target="blank" class="article-anchor">
+        <ion-card>
+          <ion-img
+            *ngIf="article.urlToImage"
+            [src]="article.urlToImage"
+          ></ion-img>
+          <ion-card-header>
+            <ion-card-title>{{ article.title }}</ion-card-title>
+          </ion-card-header>
 
-        <ion-card-content>
-          {{ article.description }}
-          <ion-icon name="bookmark-outline" (click)="saveArticle(article)"></ion-icon>
-        </ion-card-content>
-      </ion-card>
+          <ion-card-content>
+            {{ article.description }}
+            <ion-icon
+              name="bookmark-outline"
+              (click)="saveArticle(article)"
+            ></ion-icon>
+          </ion-card-content>
+        </ion-card>
+      </a>
     </ion-item>
   </div>
 </ion-content>

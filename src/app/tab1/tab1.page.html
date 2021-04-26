@@ -16,10 +16,15 @@
   <div *ngIf="stories$ | async as news">
     <ion-item>
       <!-- <ion-label>Categories</ion-label> -->
-      <ion-select placeholder="Categories" (ionChange)="onCategoryChange($event)">
+      <ion-select
+        placeholder="Categories"
+        (ionChange)="onCategoryChange($event)"
+      >
         <ion-select-option value="">All</ion-select-option>
         <ion-select-option value="business">Business</ion-select-option>
-        <ion-select-option value="entertainment">Entertainment</ion-select-option>
+        <ion-select-option value="entertainment"
+          >Entertainment</ion-select-option
+        >
         <ion-select-option value="general">General</ion-select-option>
         <ion-select-option value="health">Health</ion-select-option>
         <ion-select-option value="science">Science</ion-select-option>
@@ -29,20 +34,25 @@
     </ion-item>
 
     <ion-item *ngFor="let article of news.articles">
-      <ion-card>
+      <a href="{{article.url}}" target="blank" class="article-anchor">
+        <ion-card>
           <ion-img
             *ngIf="article.urlToImage"
             [src]="article.urlToImage"
           ></ion-img>
-        <ion-card-header>
-          <ion-card-title>{{ article.title }}</ion-card-title>
-        </ion-card-header>
+          <ion-card-header>
+            <ion-card-title>{{ article.title }}</ion-card-title>
+          </ion-card-header>
 
-        <ion-card-content>
-          {{ article.description }}
-          <ion-icon name="bookmark-outline" (click)="saveArticle(article)"></ion-icon>
-        </ion-card-content>
-      </ion-card>
+          <ion-card-content>
+            {{ article.description }}
+            <ion-icon
+              name="bookmark-outline"
+              (click)="saveArticle(article)"
+            ></ion-icon>
+          </ion-card-content>
+        </ion-card>
+      </a>
 
       <!--
       <h6>{{ article.title }}</h6>
