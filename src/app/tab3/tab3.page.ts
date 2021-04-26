@@ -21,11 +21,12 @@ export class Tab3Page {
 
   ngOnInit() {}
 
-  saveArticle(url, urlToImage) {
+  saveArticle(article) {
     this.savedNewsService.addSavedNews(
       {
-        url: url,
-        urlToImage: urlToImage
+        title: article.title,
+        url: article.url,
+        urlToImage: article.urlToImage
       }
     )
     this.user$.subscribe((user$) => {

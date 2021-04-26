@@ -19,8 +19,8 @@
           [src]="article.urlToImage"
         ></ion-img>
         <ion-card-header>
-          <ion-card-title>{{ article.url }}</ion-card-title>
-          <ion-icon name="bookmark-outline" (click)="saveArticle(article.url, article.urlToImage)"></ion-icon>
+          <ion-card-title>{{ article.title }}</ion-card-title>
+          <ion-icon name="bookmark-outline" (click)="saveArticle(article)"></ion-icon>
         </ion-card-header>
       </ion-card>
     </ion-item>

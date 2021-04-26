@@ -18,11 +18,12 @@ export class Tab1Page {
     this.stories$ = this.newsService.getTopStoriesObservable(this.page, $event.detail.value);
   }
 
-  saveArticle(url, urlToImage) {
+  saveArticle(article) {
     this.savedNewsService.addSavedNews(
       {
-        url: url,
-        urlToImage: urlToImage
+        title: article.title,
+        url: article.url,
+        urlToImage: article.urlToImage
       }
     )
   }
