@@ -19,11 +19,12 @@ export class Tab2Page {
     this.stories$ = this.newsService.getStoriesBySearchObservable(search);
   }
 
-  saveArticle(url, urlToImage) {
+  saveArticle(article) {
     this.savedNewsService.addSavedNews(
       {
-        url: url,
-        urlToImage: urlToImage
+        title: article.title,
+        url: article.url,
+        urlToImage: article.urlToImage
       }
     )
   }

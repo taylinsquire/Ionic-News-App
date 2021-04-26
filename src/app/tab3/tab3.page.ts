@@ -21,8 +21,14 @@ export class Tab3Page {
 
   ngOnInit() {}
 
-  unsaveArticle(url) {
-    this.savedNewsService.removeSave(url)
+  unsaveArticle(article) {
+    this.savedNewsService.addSavedNews(
+      {
+        title: article.title,
+        url: article.url,
+        urlToImage: article.urlToImage
+      }
+    )
     this.user$.subscribe((user$) => {
       user$.subscribe((user) => {
         this.savedNews = user.savedNews;
