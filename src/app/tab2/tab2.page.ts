@@ -9,14 +9,21 @@ import { SavedNewsService } from '../services/saved-news.service';
 })
 export class Tab2Page {
   stories$;
+  currentSearch: string = '';
+  currentCategory: string = '';
   search: string;
   constructor(private newsService: NewsService, private savedNewsService: SavedNewsService) {
     this.stories$ = this.newsService.getStoriesBySearchObservable();
   }
 
-  searchNews(search) {
-    console.log(search);
-    this.stories$ = this.newsService.getStoriesBySearchObservable(search);
+  onCategoryChange(category) {
+    this.currentCategory = category
+    this.searchNews(this.currentSearch, category);
+  }
+
+  searchNews(search, category = this.currentCategory) {
+    this.currentSearch = search;
+    this.stories$ = this.newsService.getStoriesBySearchObservable(search, category);
   }
 
   saveArticle(article) {

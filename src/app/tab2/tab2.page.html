@@ -14,7 +14,18 @@
   </ion-header>
 
   <ion-searchbar (ionChange)="searchNews($event.target.value)"></ion-searchbar>
+  <ion-select placeholder="Categories" (ionChange)="onCategoryChange($event.target.value)">
+    <ion-select-option value="">All</ion-select-option>
+    <ion-select-option value="business">Business</ion-select-option>
+    <ion-select-option value="entertainment">Entertainment</ion-select-option>
+    <ion-select-option value="general">General</ion-select-option>
+    <ion-select-option value="health">Health</ion-select-option>
+    <ion-select-option value="science">Science</ion-select-option>
+    <ion-select-option value="sports">Sports</ion-select-option>
+    <ion-select-option value="technology">Technology</ion-select-option>
+  </ion-select>
   <div *ngIf="stories$ | async as news">
+
     <ion-item *ngFor="let article of news.articles">
       <ion-card>
         <ion-img

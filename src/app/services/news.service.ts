@@ -25,7 +25,14 @@ export class NewsService {
     ).pipe(shareReplay());
   }
 
-  getStoriesBySearchObservable(search: string = 'news'): Observable<any> {
+  getStoriesBySearchObservable(search: string = 'news', category: string = ''): Observable<any> {
+    if (category) {
+      if (search === '') {
+        return this.http.get(`https://newsapi.org/v2/top-headlines?q=news&category=${category}&apiKey=${apiKey}`).pipe(shareReplay());
+        }
+        return this.http.get(`https://newsapi.org/v2/top-headlines?q=${search}&category=${category}&apiKey=${apiKey}`).pipe(shareReplay());
+    }
+
     if (search === '') {
     return this.http.get(`https://newsapi.org/v2/everything?q=news&apiKey=${apiKey}`).pipe(shareReplay());
     }
