@@ -25,6 +25,7 @@ export class SavedNewsService {
     this.user$.subscribe((user$) => {
       user$.subscribe((user) => {
         this.userId = user.uid;
+        this.savedNews = user.savedNews;
       });
     });
   }
