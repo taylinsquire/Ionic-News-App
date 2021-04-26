@@ -11,6 +11,12 @@ const apiKey = '563a5794042c457580326ddc1d8d139b';
 export class NewsService {
   constructor(private http: HttpClient) {}
 
+  headers = {
+    headers: {
+      'X-Api-Key': apiKey,
+    },
+  };
+
   getTopStoriesObservable(
     page: number = 1,
     category: string = ''
@@ -19,22 +25,14 @@ export class NewsService {
       return this.http
         .get(
           `https://newsapi.org/v2/top-headlines?country=us&pageSize=100&page=${page}`,
-          {
-            headers: {
-              'X-Api-Key': apiKey,
-            },
-          }
+          this.headers
         )
         .pipe(shareReplay());
     }
     return this.http
       .get(
         `https://newsapi.org/v2/top-headlines?country=us&pageSize=100&category=${category}&page=${page}`,
-        {
-          headers: {
-            'X-Api-Key': apiKey,
-          },
-        }
+        this.headers
       )
       .pipe(shareReplay());
   }
@@ -48,43 +46,25 @@ export class NewsService {
         return this.http
           .get(
             `https://newsapi.org/v2/top-headlines?q=news&category=${category}`,
-            {
-              headers: {
-                'X-Api-Key': apiKey,
-              },
-            }
+            this.headers
           )
           .pipe(shareReplay());
       }
       return this.http
         .get(
           `https://newsapi.org/v2/top-headlines?q=${search}&category=${category}`,
-          {
-            headers: {
-              'X-Api-Key': apiKey,
-            },
-          }
+          this.headers
         )
         .pipe(shareReplay());
     }
 
     if (search === '') {
       return this.http
-        .get(`https://newsapi.org/v2/everything?q=news`,
-        {
-            headers: {
-              'X-Api-Key': apiKey,
-            },
-          })
+        .get(`https://newsapi.org/v2/everything?q=news`, this.headers)
         .pipe(shareReplay());
     }
     return this.http
-      .get(`https://newsapi.org/v2/everything?q=${search}`,
-      {
-            headers: {
-              'X-Api-Key': apiKey,
-            },
-          })
+      .get(`https://newsapi.org/v2/everything?q=${search}`, this.headers)
       .pipe(shareReplay());
   }
 }
