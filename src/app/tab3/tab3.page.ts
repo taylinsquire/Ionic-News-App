@@ -11,7 +11,10 @@ export class Tab3Page {
   savedNews;
   user$;
 
-  constructor(private savedNewsService: SavedNewsService, private authService: AuthService) {
+  constructor(
+    private savedNewsService: SavedNewsService,
+    private authService: AuthService
+  ) {
     this.user$ = this.savedNewsService.getSavedNews();
     this.user$.subscribe((user$) => {
       user$.subscribe((user) => {
@@ -23,13 +26,11 @@ export class Tab3Page {
   ngOnInit() {}
 
   unsaveArticle(article) {
-    this.savedNewsService.addSavedNews(
-      {
-        title: article.title,
-        url: article.url,
-        urlToImage: article.urlToImage
-      }
-    )
+    this.savedNewsService.addSavedNews({
+      title: article.title,
+      url: article.url,
+      urlToImage: article.urlToImage,
+    });
     this.user$.subscribe((user$) => {
       user$.subscribe((user) => {
         this.savedNews = user.savedNews;
