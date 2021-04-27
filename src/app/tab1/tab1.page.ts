@@ -6,27 +6,32 @@ import { AuthService } from '../services/auth.service';
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
-  styleUrls: ['tab1.page.scss']
+  styleUrls: ['tab1.page.scss'],
 })
 export class Tab1Page {
   stories$;
   page: number = 1;
-  constructor(private newsService: NewsService, private savedNewsService: SavedNewsService, private authService: AuthService) {
+  constructor(
+    private newsService: NewsService,
+    private savedNewsService: SavedNewsService,
+    private authService: AuthService
+  ) {
     this.stories$ = this.newsService.getTopStoriesObservable(this.page);
   }
 
   onCategoryChange($event) {
-    this.stories$ = this.newsService.getTopStoriesObservable(this.page, $event.detail.value);
+    this.stories$ = this.newsService.getTopStoriesObservable(
+      this.page,
+      $event.detail.value
+    );
   }
 
   saveArticle(article) {
-    this.savedNewsService.addSavedNews(
-      {
-        title: article.title,
-        url: article.url,
-        urlToImage: article.urlToImage
-      }
-    )
+    this.savedNewsService.addSavedNews({
+      title: article.title,
+      url: article.url,
+      urlToImage: article.urlToImage,
+    });
   }
 
   signOut(): void {

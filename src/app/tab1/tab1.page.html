@@ -15,25 +15,20 @@
   </ion-header>
 
   <!-- <app-explore-container name="Tab 1 page"></app-explore-container> -->
+  <ion-select placeholder="Categories" (ionChange)="onCategoryChange($event)">
+    <ion-select-option value="">All</ion-select-option>
+    <ion-select-option value="business">Business</ion-select-option>
+    <ion-select-option value="entertainment">Entertainment</ion-select-option>
+    <ion-select-option value="general">General</ion-select-option>
+    <ion-select-option value="health">Health</ion-select-option>
+    <ion-select-option value="science">Science</ion-select-option>
+    <ion-select-option value="sports">Sports</ion-select-option>
+    <ion-select-option value="technology">Technology</ion-select-option>
+  </ion-select>
 
   <div *ngIf="stories$ | async as news">
     <ion-item>
       <!-- <ion-label>Categories</ion-label> -->
-      <ion-select
-        placeholder="Categories"
-        (ionChange)="onCategoryChange($event)"
-      >
-        <ion-select-option value="">All</ion-select-option>
-        <ion-select-option value="business">Business</ion-select-option>
-        <ion-select-option value="entertainment"
-          >Entertainment</ion-select-option
-        >
-        <ion-select-option value="general">General</ion-select-option>
-        <ion-select-option value="health">Health</ion-select-option>
-        <ion-select-option value="science">Science</ion-select-option>
-        <ion-select-option value="sports">Sports</ion-select-option>
-        <ion-select-option value="technology">Technology</ion-select-option>
-      </ion-select>
     </ion-item>
 
     <ion-item *ngFor="let article of news.articles">
