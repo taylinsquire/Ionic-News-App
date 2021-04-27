@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NewsService } from '../services/news.service';
 import { SavedNewsService } from '../services/saved-news.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-tab2',
@@ -12,7 +13,7 @@ export class Tab2Page {
   currentSearch: string = '';
   currentCategory: string = '';
   search: string;
-  constructor(private newsService: NewsService, private savedNewsService: SavedNewsService) {
+  constructor(private newsService: NewsService, private savedNewsService: SavedNewsService, private authService: AuthService) {
     this.stories$ = this.newsService.getStoriesBySearchObservable();
   }
 
@@ -34,5 +35,9 @@ export class Tab2Page {
         urlToImage: article.urlToImage
       }
     )
+  }
+
+  signOut(): void {
+    this.authService.signOut();
   }
 }
