@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { SavedNewsService } from '../services/saved-news.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-tab3',
@@ -10,7 +11,7 @@ export class Tab3Page {
   savedNews;
   user$;
 
-  constructor(private savedNewsService: SavedNewsService) {
+  constructor(private savedNewsService: SavedNewsService, private authService: AuthService) {
     this.user$ = this.savedNewsService.getSavedNews();
     this.user$.subscribe((user$) => {
       user$.subscribe((user) => {
@@ -34,5 +35,9 @@ export class Tab3Page {
         this.savedNews = user.savedNews;
       });
     });
+  }
+
+  signOut(): void {
+    this.authService.signOut();
   }
 }

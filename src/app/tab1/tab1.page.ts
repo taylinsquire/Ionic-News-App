@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NewsService } from '../services/news.service';
 import { SavedNewsService } from '../services/saved-news.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-tab1',
@@ -10,7 +11,7 @@ import { SavedNewsService } from '../services/saved-news.service';
 export class Tab1Page {
   stories$;
   page: number = 1;
-  constructor(private newsService: NewsService, private savedNewsService: SavedNewsService) {
+  constructor(private newsService: NewsService, private savedNewsService: SavedNewsService, private authService: AuthService) {
     this.stories$ = this.newsService.getTopStoriesObservable(this.page);
   }
 
@@ -26,5 +27,9 @@ export class Tab1Page {
         urlToImage: article.urlToImage
       }
     )
+  }
+
+  signOut(): void {
+    this.authService.signOut();
   }
 }
