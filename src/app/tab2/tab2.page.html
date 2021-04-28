@@ -29,7 +29,9 @@
     <ion-select-option value="technology">Technology</ion-select-option>
   </ion-select>
   <div *ngIf="stories$ | async as news">
-    <ion-item *ngFor="let article of news.articles">
+    <ion-grid>
+    <ion-row>
+    <ion-col size-xs="12" size-sm="6" size-md="6" size-lg="4" size-xl="4" *ngFor="let article of news.articles">
       <ion-card>
         <a href="{{article.url}}" target="blank" class="article-anchor">
           <ion-img
@@ -51,6 +53,8 @@
           ></ion-icon>
         </ion-card-content>
       </ion-card>
-    </ion-item>
+    </ion-col>
+    </ion-row>
+    </ion-grid>
   </div>
 </ion-content>
