@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { catchError, map } from 'rxjs/operators';
+import { catchError, map, mergeAll } from 'rxjs/operators';
 import { throwError, Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import firebase from 'firebase/app';
@@ -28,7 +28,7 @@ export class AuthService {
   }
 
   getUserObservable(): Observable<any> {
-    return this.user$;
+    return this.user$.pipe(mergeAll());
   }
 
   signOut(): void {
