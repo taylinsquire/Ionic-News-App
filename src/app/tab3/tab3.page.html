@@ -29,7 +29,12 @@
           <a href="{{article.url}}" target="blank" class="article-anchor">
             <ion-card-title>{{ article.title }}</ion-card-title>
           </a>
-          <ion-icon
+          <ion-icon *ngIf="articleSaved(article)"
+            name="bookmark"
+            color="primary"
+            (click)="unsaveArticle(article)"
+          ></ion-icon>
+          <ion-icon *ngIf="!articleSaved(article)"
             name="bookmark-outline"
             (click)="unsaveArticle(article)"
           ></ion-icon>

@@ -71,6 +71,13 @@ export class SavedNewsService {
     return this.user$;
   }
 
+  isArticleSaved(article) {
+    if (this.savedNews.findIndex(a => a.url === article.url) !== -1) {
+      return true;
+    }
+    return false;
+  }
+
   private errorHandler(error) {
     console.log(error);
     return throwError(error);
