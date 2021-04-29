@@ -46,6 +46,10 @@ export class Tab2Page {
     this.authService.signOut();
   }
 
+  articleSaved(article) {
+    return this.savedNewsService.isArticleSaved(article)
+  }
+
   imageError(e, article) {
     article.urlToImage = '';
   }

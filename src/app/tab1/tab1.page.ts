@@ -34,6 +34,10 @@ export class Tab1Page {
     });
   }
 
+  articleSaved(article) {
+    return this.savedNewsService.isArticleSaved(article)
+  }
+
   signOut(): void {
     this.authService.signOut();
   }

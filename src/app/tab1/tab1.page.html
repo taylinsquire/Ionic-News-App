@@ -49,7 +49,12 @@
 
         <ion-card-content>
           {{ article.description }}
-          <ion-icon
+          <ion-icon *ngIf="articleSaved(article)"
+            name="bookmark"
+            color="primary"
+            (click)="saveArticle(article)"
+          ></ion-icon>
+          <ion-icon *ngIf="!articleSaved(article)"
             name="bookmark-outline"
             (click)="saveArticle(article)"
           ></ion-icon>
