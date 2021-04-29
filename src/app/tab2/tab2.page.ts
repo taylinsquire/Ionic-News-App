@@ -45,4 +45,8 @@ export class Tab2Page {
   signOut(): void {
     this.authService.signOut();
   }
+
+  imageError(e, article) {
+    article.urlToImage = '';
+  }
 }
