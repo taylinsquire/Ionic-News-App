@@ -16,11 +16,9 @@ export class Tab3Page {
     private authService: AuthService
   ) {
     this.user$ = this.savedNewsService.getSavedNews();
-    this.user$.subscribe((user$) => {
-      user$.subscribe((user) => {
-        this.savedNews = user.savedNews;
-      });
-    });
+    this.user$.subscribe(user => {
+      this.savedNews = user.savedNews;
+    })
   }
 
   ngOnInit() {}

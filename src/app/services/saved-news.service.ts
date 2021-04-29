@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { throwError } from 'rxjs';
+import { throwError, from, of } from 'rxjs';
 import { AuthService } from './auth.service';
 
 @Injectable({
@@ -15,11 +15,9 @@ export class SavedNewsService {
   constructor(private db: AngularFirestore, private authService: AuthService) {
     this.usersRef = this.db.collection('users');
     this.user$ = this.authService.getUserObservable();
-    this.user$.subscribe((user$) => {
-      user$.subscribe((user) => {
-        this.userId = user.uid;
-        this.savedNews = user.savedNews;
-      });
+    this.user$.subscribe((user) => {
+      this.userId = user.uid;
+      this.savedNews = user.savedNews;
     });
   }
 
