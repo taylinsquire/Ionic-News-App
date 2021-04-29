@@ -35,11 +35,7 @@ export class Tab2Page {
   }
 
   saveArticle(article) {
-    this.savedNewsService.addSavedNews({
-      title: article.title,
-      url: article.url,
-      urlToImage: article.urlToImage,
-    });
+    this.savedNewsService.addSavedNews(article);
   }
 
   signOut(): void {

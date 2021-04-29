@@ -27,11 +27,7 @@ export class Tab1Page {
   }
 
   saveArticle(article) {
-    this.savedNewsService.addSavedNews({
-      title: article.title,
-      url: article.url,
-      urlToImage: article.urlToImage,
-    });
+    this.savedNewsService.addSavedNews(article);
   }
 
   articleSaved(article) {

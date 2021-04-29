@@ -24,14 +24,7 @@ export class Tab3Page {
   ngOnInit() {}
 
   unsaveArticle(article) {
-    this.savedNewsService.addSavedNews({
-      title: article.title,
-      url: article.url,
-      urlToImage: article.urlToImage,
-    });
-    this.user$.subscribe((user) => {
-      this.savedNews = user.savedNews;
-    });
+    this.savedNewsService.addSavedNews(article);
   }
 
   articleSaved(article) {
