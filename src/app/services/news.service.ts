@@ -41,6 +41,8 @@ export class NewsService {
     search: string = 'news',
     category: string = ''
   ): Observable<any> {
+    search = encodeURIComponent(search);
+
     if (category) {
       if (search === '') {
         return this.http
