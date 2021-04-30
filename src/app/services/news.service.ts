@@ -47,14 +47,14 @@ export class NewsService {
       if (search === '') {
         return this.http
           .get(
-            `https://newsapi.org/v2/top-headlines?q=news&category=${category}`,
+            `https://newsapi.org/v2/top-headlines?q=news&pageSize=100&category=${category}`,
             this.headers
           )
           .pipe(shareReplay());
       }
       return this.http
         .get(
-          `https://newsapi.org/v2/top-headlines?q=${search}&category=${category}`,
+          `https://newsapi.org/v2/top-headlines?q=${search}&pageSize=100&category=${category}`,
           this.headers
         )
         .pipe(shareReplay());
@@ -62,11 +62,11 @@ export class NewsService {
 
     if (search === '') {
       return this.http
-        .get(`https://newsapi.org/v2/everything?q=news`, this.headers)
+        .get(`https://newsapi.org/v2/everything?q=news&pageSize=100`, this.headers)
         .pipe(shareReplay());
     }
     return this.http
-      .get(`https://newsapi.org/v2/everything?q=${search}`, this.headers)
+      .get(`https://newsapi.org/v2/everything?q=${search}&pageSize=100`, this.headers)
       .pipe(shareReplay());
   }
 }
