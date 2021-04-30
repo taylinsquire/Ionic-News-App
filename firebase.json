@@ -12,7 +12,8 @@
           "headers": [
             {
               "key": "Cache-Control",
-              "value": "public,max-age=31536000,immutable"
+              "value": "public,max-age=31536000,immutable",
+              "Access-Control-Allow-Origin": "https://news-app-eff9f.web.app"
             }
           ]
         }
